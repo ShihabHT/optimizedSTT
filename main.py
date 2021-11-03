@@ -17,8 +17,9 @@ while True:
         print("Dynamic Energy ratio before adjusting :", r.dynamic_energy_ratio)
         r.adjust_for_ambient_noise(source, 1)
         adjustedThreshold = r.energy_threshold
+        print("Energy threshold after adjusting :", r.energy_threshold)
 
-        if 50<= adjustedThreshold <= 1400:
+        if 50 <= adjustedThreshold <= 1400:
             graph_ratio = 22.76 * (adjustedThreshold ** -0.376)
         elif adjustedThreshold < 50:
             graph_ratio = 7
@@ -26,9 +27,6 @@ while True:
             graph_ratio = 1.5
 
         r.dynamic_energy_ratio = graph_ratio
-        print("Energy threshold before multiplying :", r.energy_threshold)
-        # r.energy_threshold = r.energy_threshold * graph_ratio
-        print("Energy threshold after adjusting :", r.energy_threshold)
         print("Dynamic Energy ratio :", r.dynamic_energy_ratio)
         speech = r.listen(source, phrase_time_limit=10)
         print("Energy threshold after listening :", r.energy_threshold)
